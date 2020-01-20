@@ -33,6 +33,7 @@ export default function NestedMenu({
       .catch(e => console.error('Невозможно проинициализировать вложенное меню', e));
   }
 
+  // Первоначальная инициализация при загрузке страницы: поиск элементов, присвоение стандартных значений 
   function init() {
     activeNestedListEl = [];
     isActive = false;
@@ -51,7 +52,9 @@ export default function NestedMenu({
     back.addEventListener('click', backToPrevious);
   }
 
+  // при клике на кнопку-активатор
   function onButtonClick(e) {
+    // если активируем в первый раз - генерируем html
     if (!activated) {
       generateTemplate();
       nestedListEl = menu.querySelectorAll(`.${classes.el.nested} > .${classes.elTitle.base}`);
@@ -86,9 +89,7 @@ export default function NestedMenu({
   function onWindowClick(e) {
     let isInsideMenu = e.target.closest(`.${classes.menuWrapper.base}`);
     let isListWrapper = e.target === listWrapper;
-    if (isInsideMenu && !isListWrapper) {
-      
-    } else {
+    if (!isInsideMenu || isListWrapper) {
       reset();
     }
   }
@@ -105,6 +106,7 @@ export default function NestedMenu({
     }
   }
 
+  // при активации элемента со вложенными пунктами
   function enableEl(el) {
     if (!el.classList.contains(classes.el.active) && el.classList.contains(classes.el.nested)) {
       activeNestedListEl.push(el);
@@ -131,6 +133,7 @@ export default function NestedMenu({
     if (activeNestedListEl.length === 0) back.classList.remove(classes.back.active); 
   }
 
+  // получаем все активные элементы выше по уровню от определенного элемента
   function getAncestors(el) {
     let arr = [];
     let current = el;
