@@ -1,0 +1,23 @@
+{
+  "name": "menu-json",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "cssnano": "^4.1.10",
+    "postcss-modules": "^1.5.0",
+    "sass": "^1.25.0"
+  },
+  "dependencies": {
+    "deepmerge": "^4.2.2",
+    "postcss-inline-svg": "^4.1.0",
+    "postcss-nested": "^4.2.1",
+    "postcss-nested-ancestors": "^2.0.0"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "plugins": {
+    "postcss-inline-svg": {
+      "removeFill": true
+    },
+    "postcss-nested": true,
+    "postcss-nested-ancestors": true
+  }
+}

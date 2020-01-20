@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="12px" viewBox="0 0 12 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 59.1 (86144) - https://sketch.com -->
+    <title>bem-nested-menu__mobile-close</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-262.000000, -27.000000)" fill="#000000" fill-rule="nonzero">
+            <g id="Group-2" transform="translate(9.000000, 8.000000)">
+                <g id="Group-3" transform="translate(15.000000, 14.000000)">
+                    <g id="noun_Close_702625" transform="translate(0.000000, 5.000000)">
+                        <path d="M249.862225,10.1268293 L245.606312,6 L249.862225,1.87317073 C250.043328,1.69756098 250.043328,1.4195122 249.862225,1.25853659 L248.579414,0.0146341463 L244.006572,4.44878049 L239.418638,0 L238.135827,1.24390244 C237.954724,1.4195122 237.954724,1.69756098 238.135827,1.85853659 L242.39174,5.98536585 L238.150919,10.1268293 C237.969816,10.302439 237.969816,10.5804878 238.150919,10.7414634 L239.433729,11.9853659 L244.006572,7.55121951 L248.594506,12 L249.877317,10.7560976 C250.043328,10.5804878 250.043328,10.302439 249.862225,10.1268293 Z" id="bem-nested-menu__mobile-close"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
