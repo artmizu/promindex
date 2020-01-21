@@ -15,11 +15,12 @@ export default function NestedMenu({
   url,
   classes = {},
   mobileMaxWidth = 767,
+  mouseMoveResetTimeout = 3000,
 } = {}) {
   let menu = document.querySelector(selector);
   if (!menu) return;
 
-  let data, button, nestedListEl, activeNestedListEl, isActive, menuWrapper, listWrapper, title, close, back, blackout, defaultMenuTitle;
+  let data, button, nestedListEl, activeNestedListEl, isActive, menuWrapper, listWrapper, title, close, back, blackout, defaultMenuTitle, menuResetTimeout;
   let activated = false;
   downloadData();
 
@@ -65,14 +66,12 @@ export default function NestedMenu({
       reset();
     } else {
       isActive = true;
+      button.classList.add(classes.button.active);
       menu.classList.add(classes.menu.active);
       window.requestAnimationFrame(() => window.addEventListener('click', onWindowClick));
       window.addEventListener('resize', onResize);
-      if (isMobile()) {
-        toggleBlackout('on');
-      } else {
-        listWrapper.addEventListener('mousemove', onListWrapperHover);
-      }
+      toggleBlackout('on');
+      if (!isMobile()) window.addEventListener('mousemove', onMouseMove);
     }
   }
 
@@ -81,28 +80,31 @@ export default function NestedMenu({
     enableEl(e.target.closest(`.${classes.el.base}`));
   }
 
-  function onListWrapperHover(e) {
-    let el = e.target.closest(`.${classes.el.base}`);
-    if (el) enableEl(el);
+  function onMouseMove(e) {
+    let isInsideMenu = e.target.closest(`.${classes.listWrapper.base}`);
+    if (isInsideMenu) {
+      let el = e.target.closest(`.${classes.el.base}`);
+      resetMouseMoveTimer();
+      if (el) enableEl(el)
+    } else {
+      if (!menuResetTimeout) menuResetTimeout = setTimeout(reset, mouseMoveResetTimeout);
+    }
   }
 
   function onWindowClick(e) {
-    let isInsideMenu = e.target.closest(`.${classes.menuWrapper.base}`);
-    let isListWrapper = e.target === listWrapper;
-    if (!isInsideMenu || isListWrapper) {
-      reset();
-    }
+    let isInsideMenu = e.target.closest(`.${classes.list.base}`);
+    let isMobileTop = e.target.closest(`.${classes.mobileTop.base}`);
+    if (!isInsideMenu && !isMobileTop) reset();
   }
 
   function onResize() {
     if (isMobile()) {
-      toggleBlackout('on');
       shiftListBy(activeNestedListEl.length);
-      listWrapper.removeEventListener('mousemove', onListWrapperHover);
+      resetMouseMoveTimer();
+      window.removeEventListener('mousemove', onMouseMove);
     } else {
-      toggleBlackout('off');
       shiftListBy(0);
-      listWrapper.addEventListener('mousemove', onListWrapperHover);
+      window.addEventListener('mousemove', onMouseMove);
     }
   }
 
@@ -156,18 +158,26 @@ export default function NestedMenu({
     isActive = false;
     activeNestedListEl.forEach(el => el.classList.remove(classes.el.active));
     activeNestedListEl = [];
+    button.classList.remove(classes.button.active);
     menu.classList.remove(classes.menu.active);
     window.removeEventListener('click', onWindowClick);
     window.removeEventListener('resize', onResize);
     setTitle();
     shiftListBy(0);
     back.classList.remove(classes.back.active); 
-    if (isMobile()) {
-      toggleBlackout('off');
-    } else {
-      listWrapper.removeEventListener('mousemove', onListWrapperHover);
+    toggleBlackout('off');
+    resetMouseMoveTimer();
+    if (!isMobile()) {
+      window.removeEventListener('mousemove', onMouseMove);
     }
     log();
+  }
+
+  function resetMouseMoveTimer() {
+    if (menuResetTimeout) {
+      clearTimeout(menuResetTimeout)
+      menuResetTimeout = null;
+    };
   }
 
   function getClasses(obj) {
@@ -209,8 +219,14 @@ export default function NestedMenu({
         nested: 'bem-nested-menu__el_nested',
         active: 'bem-nested-menu__el_active',
       },
+      elIcon: {
+        base: 'bem-nested-menu__el-icon',
+      },
       elTitle: {
-        base: 'bem-nested-menu__el-title'
+        base: 'bem-nested-menu__el-title',
+      },
+      mobileTop: {
+        base: 'bem-nested-menu__mobile-top',
       }
     }, 
     obj);
@@ -233,6 +249,12 @@ export default function NestedMenu({
       title.setAttribute('href', el.link);
       title.classList.add(classes.elTitle.base);
       temp.appendChild(title);
+      if (el.icon) {
+        let icon = document.createElement('div');
+        icon.classList.add(classes.elIcon.base);
+        icon.style.backgroundImage = `url(${el.icon})`;
+        title.prepend(icon);
+      }
 
       if (el.child) {
         let childList = createList(el.child);

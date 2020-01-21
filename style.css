@@ -6,14 +6,16 @@
 */
 
 .bem-nested-menu {
+  position: relative;
   &__menu-wrapper {
     display: none;
-    position: relative;
-    top: 10px;
-    left: -14px;
+    position: absolute;
+    top: 29px;
+    left: -16px;
   }
   &__list-wrapper {
     position: relative;
+    z-index: 200;
   }
   &__button {
     font-size: 16px;
@@ -47,6 +49,27 @@
         background-image: svg-load('./img/bem-nested-menu__button-span-arrow.svg', fill=#FF2E51);
       }
     }
+    &_active {
+      position: relative;
+      z-index:200;
+      .bem-nested-menu__button-span {
+        color:#fff;
+        text-shadow: 0 1px 3px rgba(0, 0, 0, 0.26);
+      }
+      &:after {
+        background-image: svg-load('./img/bem-nested-menu__button-span-arrow.svg', fill=#fff);
+      }
+      &:hover {
+        .bem-nested-menu__button-span {
+          color:#fff;
+          opacity:0.8;
+        }
+        &:after {
+          background-image: svg-load('./img/bem-nested-menu__button-span-arrow.svg', fill=#fff);
+          opacity:0.8;
+        }
+      }
+    }
   }
   &__mobile {
     &-top {
@@ -74,6 +97,7 @@
     }
     &-title {
       max-height: 32px;
+      color:#000;
       font-size: 15px;
       line-height: 16px;
       font-weight: 500;
@@ -102,13 +126,24 @@
     padding: 7px 0 7px;
     font-size: 14px;
     line-height: 20px;
-    box-shadow: 0px 2px 9px rgba(0, 0, 0, 0.14);
     background-color: #fff;
     display: none;
   }
   &__el {
     padding-top: 5px;
     padding-bottom: 6px;
+    &-icon {
+      width: 19px;
+      height: 17px;
+      margin-right: 4px;
+      display: inline-block;
+      vertical-align: middle;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      position: relative;
+      top:-1px;
+    }
     &-title {
       color:#000;
       padding: 0 17px;
@@ -118,7 +153,7 @@
     &_nested {
       position: relative;
       > .bem-nested-menu__el-title {
-        padding-right: 12px;
+        padding-right: 27px;
         position: relative;
         &:after {
           content:'';
@@ -164,6 +199,14 @@
     }
     .bem-nested-menu__list-wrapper > .bem-nested-menu__list {
       display: block;
+    }
+  }
+  @media (max-width:991px) {
+    &__list {
+      width: 210px;
+    }
+    &__el_nested > .bem-nested-menu__list {
+      left: 211px;
     }
   }
   @media (max-width: 767px) {

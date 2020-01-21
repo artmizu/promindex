@@ -1,13 +1,16 @@
 [
   {
     "title": "Бытовая техника",
-    "link": "#"
+    "link": "#",
+    "icon": "https://artmizu.ru/screenshots/noun_Bicycle_1850962.svg"
   }, {
     "title": "Красота и здоровье",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg",
     "child": [
       {
         "title": "Автотехника",
-        "link": "#"
+        "link": "#",
+        "icon": "https://artmizu.ru/screenshots/noun_identity_1851028.svg"
       }, {
         "title": "Уцененные товары",
         "link": "#"
@@ -67,6 +70,7 @@
     ]
   }, {
     "title": "Фото и видеокамеры",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg",
     "child": [
       {
         "title": "Автотехника",
@@ -110,12 +114,14 @@
     ]
   }, {
     "title": "Игрушки и развлечения",
-    "link": "#"
+    "link": "#",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg"
   }, {
     "title": "Дом, мебель, ремонт",
     "link": "#"
   }, {
     "title": "Автотехника",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg",
     "link": "#"
   }, {
     "title": "Уцененные товары",
@@ -145,6 +151,7 @@
     "link": "#"
   }, {
     "title": "Автотехника",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg",
     "link": "#"
   }, {
     "title": "Уцененные товары",
