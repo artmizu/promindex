@@ -76,7 +76,8 @@ export default function NestedMenu({
   }
 
   function onNestedElClick(e) {
-    e.preventDefault();
+    let isNestedLink = e.target.closest(`.${classes.el.nested} > .${classes.elTitle.base}`);
+    if (isNestedLink && isMobile()) e.preventDefault();
     enableEl(e.target.closest(`.${classes.el.base}`));
   }
 
@@ -243,6 +244,9 @@ export default function NestedMenu({
     list.forEach((el) => {
       let temp = document.createElement('div');
       temp.classList.add(classes.el.base);
+      if (el.class && el.class.length > 0) {
+        el.class.forEach(elClass => temp.classList.add(elClass));
+      }
   
       let title = document.createElement('a');
       title.innerText = el.title;

@@ -1,16 +1,19 @@
 [
   {
     "title": "Бытовая техника",
-    "link": "#",
-    "icon": "https://artmizu.ru/screenshots/noun_Bicycle_1850962.svg"
+    "link": "http://yandex.ru",
+    "icon": "https://artmizu.ru/screenshots/noun_Bicycle_1850962.svg",
+    "class": ["some-class", "another-one"]
   }, {
     "title": "Красота и здоровье",
+    "link": "http://yandex.ru",
     "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg",
     "child": [
       {
         "title": "Автотехника",
-        "link": "#",
-        "icon": "https://artmizu.ru/screenshots/noun_identity_1851028.svg"
+        "link": "http://yandex.ru",
+        "icon": "https://artmizu.ru/screenshots/noun_identity_1851028.svg",
+        "class": ["some-class", "another-one"]
       }, {
         "title": "Уцененные товары",
         "link": "#"
