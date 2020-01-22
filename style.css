@@ -211,22 +211,25 @@
   }
   @media (max-width: 767px) {
     &__menu-wrapper {
-      padding: 7px;
+      background-color: #fff;
       overflow: auto;
       -webkit-overflow-scrolling: touch;
+      flex-direction:column;
       position: fixed;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
+      top: 7px;
+      right: 7px;
+      bottom: 7px;
+      left: 7px;
       z-index: 200;
     }
     &__mobile-top {
       padding: 9px 15px 9px;
       background-color: #fff;
+      flex-shrink: 0;
     }
     &__list-wrapper {
-      overflow: hidden;
+      flex-grow: 1;
+      overflow: auto;
     }
     &__mobile-top {
       display: flex;
@@ -256,6 +259,9 @@
       width: 100%;
       padding: 0 15px 12px;
       box-shadow: none;
+    }
+    &_active .bem-nested-menu__menu-wrapper {
+      display: flex;
     }
   }
 }

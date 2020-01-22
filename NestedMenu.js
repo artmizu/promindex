@@ -117,7 +117,9 @@ export default function NestedMenu({
       disableUnnecessaryEl(el);
       setTitle(el);
       back.classList.add(classes.back.active);
-      if (isMobile()) shiftListBy(activeNestedListEl.length);
+      if (isMobile()) {
+        shiftListBy(activeNestedListEl.length);
+      }
       log();
     } else if (!el.classList.contains(classes.el.nested)) {
       disableUnnecessaryEl(el);
@@ -293,6 +295,7 @@ export default function NestedMenu({
 
   function shiftListBy(n) {
     listWrapper.querySelector(`.${classes.list.base}`).style.transform = `translateX(-${n * 100}%)`;
+    listWrapper.scrollTop = 0;
   }
 
   function log() {
