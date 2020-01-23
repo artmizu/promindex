@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "push": "rsync -azP --delete --chmod=u+rwx,Fo+r,Do+rx $PWD/dist/ artmizu@185.213.208.145:/home/artmizu/ftp/www/dev.artmizu.ru"
+    "push": "parcel build index.html && rsync -azP --delete --chmod=u+rwx,Fo+r,Do+rx $PWD/dist/ artmizu@185.213.208.145:/home/artmizu/ftp/www/dev.artmizu.ru"
   },
   "keywords": [],
   "author": "",
