@@ -132,6 +132,7 @@
   &__el {
     padding-top: 5px;
     padding-bottom: 6px;
+    cursor: pointer;
     &-icon {
       width: 19px;
       height: 17px;
@@ -184,13 +185,26 @@
         display: block;
       }  
     }
+    &_loading {
+      > .bem-nested-menu__el-title {
+        padding-right: 32px;
+      }
+      > .bem-nested-menu__el-title:after {
+        width: 17px;
+        height: 17px;
+        background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' width='200px' height='200px' viewBox='0 0 100 100' preserveAspectRatio='xMidYMid'><circle cx='50' cy='50' fill='none' stroke='%231d0e0b' stroke-width='9' r='27' stroke-dasharray='127.23450247038662 44.411500823462205' transform='rotate(218.566 50 50)'><animateTransform attributeName='transform' type='rotate' repeatCount='indefinite' dur='1s' values='0 50 50;360 50 50' keyTimes='0;1'></animateTransform></circle></svg>");
+        background-size: 20px;
+        background-position: center right -3px;
+        top: calc(50% - 8px);
+      }
+    }
     &:hover {
       > .bem-nested-menu__el-title {
         color:#FF2D50;
-        &:after {
-          background-image: svg-load('./img/bem-nested-menu__el.svg', fill=#FF2E51);
-        }
       }
+    }
+    &:hover:not(.bem-nested-menu__el_loading) > .bem-nested-menu__el-title:after {
+      background-image: svg-load('./img/bem-nested-menu__el.svg', fill=#FF2E51);
     }
   }
   &_active {

@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "title": "Бытовая техника",
+    "link": "http://yandex.ru",
+    "icon": "https://artmizu.ru/screenshots/noun_Bicycle_1850962.svg",
+    "class": ["some-class", "another-one"]
+  }, {
+    "id": 2,
+    "title": "Красота и здоровье",
+    "link": "http://yandex.ru",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg"
+  }, {
+    "id": 3,
+    "title": "Фото и видеокамеры",
+    "link": "http://yandex.ru",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg"
+  }, {
+    "id": 4,
+    "title": "Игрушки и развлечения",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg"
+  }, {
+    "id": 5,
+    "title": "Дом, мебель, ремонт",
+    "link": "#"
+  }, {
+    "id": 6,
+    "title": "Автотехника",
+    "link": "#",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg"
+  }, {
+    "id": 7,
+    "title": "Уцененные товары",
+    "link": "#"
+  }, {
+    "id": 8,
+    "title": "Дом, мебель, ремонт"
+  }, {
+    "id": 9,
+    "title": "Автотехника",
+    "icon": "https://artmizu.ru/screenshots/noun_Idea_1851042.svg",
+    "link": "#"
+  }, {
+    "id": 10,
+    "title": "Уцененные товары",
+    "link": "#"
+  }, {
+    "id": 11,
+    "title": "Бытовая техника",
+    "link": "#"
+  }, {
+    "id": 12,
+    "title": "Красота и здоровье",
+    "link": "#"
+  }, {
+    "id": 13,
+    "title": "Фото и видеокамеры",
+    "link": "#"
+  }, {
+    "id": 14,
+    "title": "Игрушки и развлечения",
+    "link": "#"
+  }
+]
