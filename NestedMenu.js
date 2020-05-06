@@ -9,7 +9,9 @@ import deepmerge from 'deepmerge';
 	nestedMenuURL - ссылка, в конец которой будут вставляться id'шники элементов меню (например при ссылке http://artmizu.ru/screenshots/ 
 	запрос на пункт меню с id 4 будет таким http://artmizu.ru/screenshots/4). Ответ должен содержать структуру пункта меню, пример структуры в файле /nestedMenuElData.json. Если nestedMenuURL не предоставлен, то используется baseMenuURL
   classes - объект с классами для основных элементов, структуру можно увидеть ниже
-  mobileMaxWidth - на каком максимальном разрешении меню будет работать в мобильном режиме
+	mobileMaxWidth - на каком максимальном разрешении меню будет работать в мобильном режиме
+	maxFailedRequestCount - кол-во попыток запросить данные для меню
+	failedRequestInterval - интервал между попытками загрузки
 */
 
 export default function NestedMenu({
@@ -19,6 +21,8 @@ export default function NestedMenu({
 	classes = {},
 	mobileMaxWidth = 767,
 	mouseMoveResetTimeout = 3000,
+	maxFailedRequestCount = 3,
+	failedRequestInterval = 1500,
 } = {}) {
 	let menu = document.querySelector(selector);
 	if (!menu) return;
@@ -35,7 +39,8 @@ export default function NestedMenu({
 		back,
 		blackout,
 		defaultMenuTitle,
-		menuResetTimeout;
+		menuResetTimeout,
+		failedRequestCount = 0;
 	let activated = false;
 	downloadData({
 		url: baseMenuURL,
@@ -46,13 +51,22 @@ export default function NestedMenu({
 	});
 
 	function downloadData({ id, url, afterDownload = () => {} } = {}) {
-		url = id ? url + id : url;
-		fetch(url)
-			.then((response) => response.json())
-			.then((json) => {
-				afterDownload(json);
-			})
-			.catch((e) => console.error('Невозможно загрузить данные для меню', e));
+		if (failedRequestCount > maxFailedRequestCount) {
+			console.error(`Невозможно загрузить данные для меню после ${failedRequestCount} попыток`);
+		} else {
+			let u = id ? url + id : url;
+			fetch(u)
+				.then((response) => response.json())
+				.then((json) => {
+					failedRequestCount = 0;
+					afterDownload(json);
+				})
+				.catch((e) => {
+					failedRequestCount += 1;
+					setTimeout(() => downloadData({ id, url, afterDownload }), failedRequestInterval);
+					console.warn(`Данные для меню загрузить не удалось после ${failedRequestCount} попытки`, e);
+				});
+		}
 	}
 
 	// Первоначальная инициализация при загрузке страницы: поиск элементов, присвоение стандартных значений
@@ -308,12 +322,18 @@ export default function NestedMenu({
 				title.prepend(icon);
 			}
 
-			// если у элемента меню есть ссылка, подразумевается что у него не может быть детей и при клике на этот пункт должен совершаться переход
 			if (el.link) {
 				title.setAttribute('href', el.link);
-			} else {
+			}
+
+			if (el.child) {
 				temp.classList.add(classes.el.nested);
 				temp.addEventListener('click', onNestedElClick);
+				if (typeof el.child === 'object') {
+					let childList = createList(el.child);
+					temp.appendChild(childList);
+					temp.dataset.downloaded = true;
+				}
 			}
 
 			listEl.appendChild(temp);
