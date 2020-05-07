@@ -1,4 +1,5 @@
 import deepmerge from 'deepmerge';
+import isTouchDevice from 'is-touch-device';
 
 /* 
   Логика для всплывающего меню с несколькими уровнями вложенности
@@ -119,8 +120,7 @@ export default function NestedMenu({
 
 	function onNestedElClick(e) {
 		let alreadyActive = this.classList.contains(classes.el.active);
-		let isNested = this.classList.contains(classes.el.nested);
-		if (!alreadyActive && isMobile()) e.preventDefault();
+		if (!alreadyActive && (isMobile() || isTouchDevice())) e.preventDefault();
 		if (alreadyActive) return;
 		enableEl(this);
 	}
