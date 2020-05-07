@@ -10,7 +10,7 @@
   &__menu-wrapper {
     display: none;
     position: absolute;
-    top: 29px;
+    top: 0px;
     left: -16px;
   }
   &__list-wrapper {
@@ -154,7 +154,7 @@
     &_nested {
       position: relative;
       > .bem-nested-menu__el-title {
-        padding-right: 27px;
+        padding-right: 32px;
         position: relative;
         &:after {
           content:'';
@@ -170,7 +170,7 @@
       }
       > .bem-nested-menu__list {
         position: absolute;
-        top:-14px;
+        top:-7px;
         left:261px;
       }
     }
@@ -186,9 +186,6 @@
       }  
     }
     &_loading {
-      > .bem-nested-menu__el-title {
-        padding-right: 32px;
-      }
       > .bem-nested-menu__el-title:after {
         width: 17px;
         height: 17px;

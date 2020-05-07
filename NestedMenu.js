@@ -120,12 +120,16 @@ export default function NestedMenu({
 
 	function onNestedElClick(e) {
 		let alreadyActive = this.classList.contains(classes.el.active);
-		if (!alreadyActive && (isMobile() || isTouchDevice())) e.preventDefault();
+		let isTouch = isTouchDevice();
+		if (!alreadyActive && (isMobile() || isTouch)) e.preventDefault();
 		if (alreadyActive) return;
 		enableEl(this);
 	}
 
 	function onMouseMove(e) {
+		let isTouch = isTouchDevice();
+		if (isTouch) return;
+
 		let isInsideMenu = e.target.closest(`.${classes.listWrapper.base}`);
 		if (isInsideMenu) {
 			let el = e.target.closest(`.${classes.el.base}`);
