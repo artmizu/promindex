@@ -77,8 +77,8 @@ export default function NestedMenu({
 		if (!nestedMenuURL) nestedMenuURL = baseMenuURL ? baseMenuURL : null;
 		menuWrapper = menu.querySelector(`.${classes.menuWrapper.base}`);
 		listWrapper = menu.querySelector(`.${classes.listWrapper.base}`);
-		button = menu.querySelector(`.${classes.button.base}`);
-		button.addEventListener('click', onButtonClick);
+		button = document.querySelectorAll(`.${classes.button.base}`);
+		button.forEach((el) => el.addEventListener('click', onButtonClick));
 
 		blackout = document.querySelector(`.${classes.blackout.base}`);
 		title = menu.querySelector(`.${classes.title.base}`);
@@ -102,13 +102,19 @@ export default function NestedMenu({
 			reset();
 		} else {
 			isActive = true;
-			button.classList.add(classes.button.active);
+			toggleButtonActive('add');
 			menu.classList.add(classes.menu.active);
 			window.requestAnimationFrame(() => window.addEventListener('click', onWindowClick));
 			window.addEventListener('resize', onResize);
 			toggleBlackout('on');
 			if (!isMobile()) window.addEventListener('mousemove', onMouseMove);
 		}
+	}
+
+	function toggleButtonActive(action) {
+		button.forEach((el) => {
+			el.classList[action](classes.button.active);
+		});
 	}
 
 	function onNestedElClick(e) {
@@ -218,7 +224,7 @@ export default function NestedMenu({
 		isActive = false;
 		activeNestedListEl.forEach((el) => el.classList.remove(classes.el.active));
 		activeNestedListEl = [];
-		button.classList.remove(classes.button.active);
+		toggleButtonActive('remove');
 		menu.classList.remove(classes.menu.active);
 		window.removeEventListener('click', onWindowClick);
 		window.removeEventListener('resize', onResize);
@@ -252,8 +258,8 @@ export default function NestedMenu({
 					active: 'bem-nested-menu_active',
 				},
 				button: {
-					base: 'bem-nested-menu__button',
-					active: 'bem-nested-menu__button_active',
+					base: 'bem-show-nested-menu',
+					active: 'bem-show-nested-menu_active',
 				},
 				close: {
 					base: 'bem-nested-menu__mobile-close',

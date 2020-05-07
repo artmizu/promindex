@@ -17,7 +17,7 @@
     position: relative;
     z-index: 200;
   }
-  &__button {
+  /* &__button {
     font-size: 16px;
     font-weight: 500;
     user-select: none;
@@ -70,7 +70,7 @@
         }
       }
     }
-  }
+  } */
   &__mobile {
     &-top {
       padding-bottom: 7px;
