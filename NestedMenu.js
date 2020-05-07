@@ -119,9 +119,9 @@ export default function NestedMenu({
 
 	function onNestedElClick(e) {
 		let alreadyActive = this.classList.contains(classes.el.active);
-		if (isMobile()) e.preventDefault();
+		let isNested = this.classList.contains(classes.el.nested);
+		if (!alreadyActive && isMobile()) e.preventDefault();
 		if (alreadyActive) return;
-
 		enableEl(this);
 	}
 
